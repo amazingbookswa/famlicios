@@ -1,8 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ContactPage extends StatelessWidget {
-  const ContactPage({Key? key}) : super(key: key);
+  const ContactPage({Key? key, required this.myContact}) : super(key: key);
+  final myContact;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +26,7 @@ class ContactPage extends StatelessWidget {
             shadowColor: Colors.black,
             margin: const EdgeInsets.all(0),
             child: Column(
-              children: const [
+              children: [
                 SizedBox(
                   height: 20,
                 ),
@@ -35,10 +38,10 @@ class ContactPage extends StatelessWidget {
                   height: 20,
                 ),
                 Text(
-                  "Fosu Kelvin",
+                  myContact['name'],
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                Text("Tumu, Nabulo"),
+                Text(myContact['location']),
                 SizedBox(
                   height: 20,
                 ),
@@ -61,14 +64,14 @@ class ContactPage extends StatelessWidget {
                   children: [
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             "Mobile",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            "+233 505 419 444",
+                            myContact['phone'],
                             style: TextStyle(color: Colors.grey),
                           ),
                         ]),
