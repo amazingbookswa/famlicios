@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:contactapp/contact_page.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +24,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List mycontacts = listofcontacts;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -43,7 +46,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-          itemCount: 10,
+          itemCount: mycontacts.length,
           itemBuilder: (BuildContext context, index) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,18 +76,23 @@ class HomePage extends StatelessWidget {
                   ),
                 InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ContactPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ContactPage(
+                                  myContact: mycontacts[index],
+                                )));
                   },
-                  child: const ListTile(
+                  child: ListTile(
                     leading: CircleAvatar(
-                      backgroundImage: AssetImage("images/lady.jpg"),
+                      backgroundImage:
+                          NetworkImage("${mycontacts[index]['image']}"),
                     ),
                     title: Text(
-                      "Techries Ghana",
+                      mycontacts[index]['name'],
                       style: TextStyle(fontWeight: FontWeight.w800),
                     ),
-                    subtitle: Text("+233 505 419 44"),
+                    subtitle: Text(mycontacts[index]['phone']),
                     trailing: Icon(Icons.more_horiz),
                   ),
                 ),
@@ -106,3 +114,62 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+List listofcontacts = [
+  {
+    "name": 'amazing',
+    'location': 'zongo',
+    'email': 'amazingbookswa@gmail.com',
+    'phone': '+233244096200',
+    'Group': 'busseness',
+    'image': 'https://picsum.photos/200/300?random=1',
+  },
+  {
+    "name": 'Yelfaari',
+    'location': 'nakore',
+    'email': 'amazingbookswa@gmail.com',
+    'phone': '+233244096205',
+    'Group': 'player',
+    'image': 'https://picsum.photos/200/300?random=2',
+  },
+  {
+    "name": 'Obonto',
+    'location': 'congo',
+    'email': 'bookswa@gmail.com',
+    'phone': '+233244096206',
+    'Group': 'family',
+    'image': 'https://picsum.photos/200/300?random=3',
+  },
+  {
+    "name": 'Francis',
+    'location': 'bongo',
+    'email': 'hookswa@gmail.com',
+    'phone': '+233244096207',
+    'Group': 'Friend',
+    'image': 'https://picsum.photos/200/300?random=7',
+  },
+  {
+    "name": 'Yaw',
+    'location': 'Kambale',
+    'email': 'francis@gmail.com',
+    'phone': '+233244096251',
+    'Group': 'busseness',
+    'image': 'https://picsum.photos/200/300?random=9',
+  },
+  {
+    "name": 'Kojo',
+    'location': 'Kumasi',
+    'email': 'yelfaari@gmail.com',
+    'phone': '+233553096200',
+    'Group': 'busseness',
+    'image': 'https://picsum.photos/200/300?random=10',
+  },
+  {
+    "name": 'amazing',
+    'location': 'zongo',
+    'email': 'amazingbookswa@gmail.com',
+    'phone': '+233244096200',
+    'Group': 'busseness',
+    'image': 'https://picsum.photos/200/300?random=1',
+  },
+];
